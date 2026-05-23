@@ -67,14 +67,19 @@ export default function SearchBar({ onLocationSelect }: Props) {
   return (
     <div ref={ref} className="relative w-full max-w-md">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "var(--text-tertiary)" }} />
         <input
           type="text"
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           onFocus={() => setIsOpen(true)}
           placeholder="Search city..."
-          className="w-full pl-10 pr-10 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all bg-slate-700/50 border border-slate-600/50 text-white placeholder-gray-400"
+          className="w-full pl-10 pr-10 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+          style={{
+            background: "var(--bg-card)",
+            border: "1px solid var(--border-card)",
+            color: "var(--text-primary)"
+          }}
         />
         {query && (
           <button
@@ -82,7 +87,8 @@ export default function SearchBar({ onLocationSelect }: Props) {
               setQuery("");
               setResults([]);
             }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity text-gray-400 hover:text-gray-300"
+            className="absolute right-3 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity"
+            style={{ color: "var(--text-tertiary)" }}
           >
             <X className="w-4 h-4" />
           </button>

@@ -1,0 +1,21 @@
+# Weather Dashboard Icons
+
+You need to create the following icon files:
+
+1. icon-192.png (192x192 pixels)
+2. icon-512.png (512x512 pixels)
+
+These should be PNG images with your weather app logo/icon.
+
+You can use tools like:
+- Canva (https://www.canva.com)
+- Figma (https://www.figma.com)
+- Or any image editor
+
+Recommended design:
+- Use a weather-related icon (sun, cloud, etc.)
+- Use the app's blue color scheme (#3b82f6)
+- Make sure the icon looks good on both light and dark backgrounds
+- Use a simple, recognizable design
+
+Once created, place them in the /public folder and delete this file.

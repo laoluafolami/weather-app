@@ -197,33 +197,33 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <div className="relative z-50 px-8 py-3 glass-card" style={{ borderRadius: 0, borderLeft: 0, borderRight: 0, borderTop: 0, overflow: "visible" }}>
-        <div className="w-full mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-light" style={{ color: "var(--text-primary)" }}>{formatTime(weather.current.dt)}</h1>
-            <p className="text-xs" style={{ color: "var(--text-tertiary)" }}>
-              {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+      <div className="relative z-50 px-4 sm:px-6 md:px-8 py-3 glass-card" style={{ borderRadius: 0, borderLeft: 0, borderRight: 0, borderTop: 0, overflow: "visible" }}>
+        <div className="w-full mx-auto flex items-center justify-between gap-4">
+          <div className="flex-shrink min-w-0">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-light truncate" style={{ color: "var(--text-primary)" }}>{formatTime(Math.floor(currentTime.getTime() / 1000))}</h1>
+            <p className="text-[10px] sm:text-xs truncate" style={{ color: "var(--text-tertiary)" }}>
+              {currentTime.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </div>
           
-          <div className="flex items-center gap-3" style={{ position: "relative", zIndex: 9999 }}>
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0" style={{ position: "relative", zIndex: 9999 }}>
             <SearchBar onLocationSelect={fetchWeather} />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={getCurrentLocation}
-              className="p-3 rounded-full transition-all shadow-sm"
+              className="p-2 sm:p-3 rounded-full transition-all shadow-sm"
               style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
             >
-              <Locate className="w-5 h-5" style={{ color: "var(--text-primary)" }} />
+              <Locate className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: "var(--text-primary)" }} />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => toggle()}
-              className="p-3 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 transition-all shadow-sm"
+              className="p-2 sm:p-3 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 transition-all shadow-sm"
             >
-              {theme === "dark" ? <Sun className="w-5 h-5 text-white" /> : <Moon className="w-5 h-5 text-white" />}
+              {theme === "dark" ? <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-white" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />}
             </motion.button>
           </div>
         </div>
@@ -231,48 +231,48 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="relative z-10 h-[calc(100vh-80px)] overflow-hidden">
-        <div className="w-full mx-auto px-8 py-4 h-full">
-          <div className="grid grid-cols-12 gap-4 h-full">
+        <div className="w-full mx-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 h-full">
             {/* Left Column - Hero Card + Summary */}
-            <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 h-full">
+            <div className="lg:col-span-4 flex flex-col gap-3 sm:gap-4 h-full overflow-y-auto scrollbar-hide">
               {/* Hero Weather Card */}
               <motion.div 
                 whileHover={{ scale: 1.01 }}
-                className="glass-card p-8 relative overflow-hidden flex-shrink-0"
-                style={{ minHeight: '400px' }}
+                className="glass-card p-4 sm:p-6 md:p-8 relative overflow-hidden flex-shrink-0"
+                style={{ minHeight: '300px' }}
               >
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/20 to-cyan-400/10 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-purple-400/15 to-pink-400/10 rounded-full blur-3xl" />
               
               <div className="relative z-10 h-full flex flex-col justify-between">
                 {/* Location and Date */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3" style={{ color: "var(--text-secondary)" }}>
-                    <MapPin className="w-5 h-5" />
-                    <span className="text-lg font-medium">{weather.location.name}, {weather.location.country}</span>
+                <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                  <div className="flex items-center gap-2 sm:gap-3" style={{ color: "var(--text-secondary)" }}>
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="text-sm sm:text-base md:text-lg font-medium truncate">{weather.location.name}, {weather.location.country}</span>
                   </div>
                   
-                  <div className="flex items-center gap-3" style={{ color: "var(--text-tertiary)" }}>
-                    <Calendar className="w-5 h-5" />
-                    <span className="text-sm">{new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                  <div className="flex items-center gap-2 sm:gap-3" style={{ color: "var(--text-tertiary)" }}>
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="text-xs sm:text-sm truncate">{new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
                   </div>
                 </div>
 
                 {/* Temperature and Weather Icon */}
-                <div className="mb-8">
-                  <div className="flex items-center justify-between">
-                    <div>
+                <div className="mb-4 sm:mb-6 md:mb-8">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
                       <motion.p 
                         whileHover={{ scale: 1.05 }}
-                        className="text-8xl font-extralight mb-3 leading-none" 
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight mb-2 sm:mb-3 leading-none" 
                         style={{ color: "var(--text-primary)" }}
                       >
                         {Math.round(weather.current.temp)}°
                       </motion.p>
-                      <p className="text-2xl capitalize font-light mb-2" style={{ color: "var(--text-secondary)" }}>
+                      <p className="text-lg sm:text-xl md:text-2xl capitalize font-light mb-1 sm:mb-2 truncate" style={{ color: "var(--text-secondary)" }}>
                         {weather.current.description}
                       </p>
-                      <p className="text-sm" style={{ color: "var(--text-tertiary)" }}>
+                      <p className="text-xs sm:text-sm" style={{ color: "var(--text-tertiary)" }}>
                         Feels like {Math.round(weather.current.feels_like)}°
                       </p>
                     </div>
@@ -281,36 +281,36 @@ export default function Home() {
                       transition={{ duration: 0.8 }}
                       src={getWeatherIconUrl(weather.current.icon)} 
                       alt={weather.current.description}
-                      className="w-32 h-32"
+                      className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 flex-shrink-0"
                     />
                   </div>
                 </div>
 
                 {/* Weather Details Grid */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <motion.div 
                     whileHover={{ scale: 1.05 }}
-                    className="p-4 rounded-2xl backdrop-blur-sm bg-white/5 border border-white/10"
+                    className="p-3 sm:p-4 rounded-xl sm:rounded-2xl backdrop-blur-sm bg-white/5 border border-white/10"
                   >
-                    <div className="flex items-center gap-3 mb-2">
-                      <Wind className="w-5 h-5 text-blue-400" />
-                      <span className="text-sm font-medium" style={{ color: "var(--text-tertiary)" }}>Wind Speed</span>
+                    <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                      <Wind className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm font-medium truncate" style={{ color: "var(--text-tertiary)" }}>Wind Speed</span>
                     </div>
-                    <p className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
-                      {Math.round(weather.current.wind_speed)} <span className="text-sm font-normal" style={{ color: "var(--text-tertiary)" }}>km/h</span>
+                    <p className="text-lg sm:text-xl md:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
+                      {Math.round(weather.current.wind_speed)} <span className="text-xs sm:text-sm font-normal" style={{ color: "var(--text-tertiary)" }}>km/h</span>
                     </p>
                   </motion.div>
                   
                   <motion.div 
                     whileHover={{ scale: 1.05 }}
-                    className="p-4 rounded-2xl backdrop-blur-sm bg-white/5 border border-white/10"
+                    className="p-3 sm:p-4 rounded-xl sm:rounded-2xl backdrop-blur-sm bg-white/5 border border-white/10"
                   >
-                    <div className="flex items-center gap-3 mb-2">
-                      <Droplets className="w-5 h-5 text-cyan-400" />
-                      <span className="text-sm font-medium" style={{ color: "var(--text-tertiary)" }}>Humidity</span>
+                    <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                      <Droplets className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm font-medium truncate" style={{ color: "var(--text-tertiary)" }}>Humidity</span>
                     </div>
-                    <p className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
-                      {weather.current.humidity}<span className="text-sm font-normal" style={{ color: "var(--text-tertiary)" }}>%</span>
+                    <p className="text-lg sm:text-xl md:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
+                      {weather.current.humidity}<span className="text-xs sm:text-sm font-normal" style={{ color: "var(--text-tertiary)" }}>%</span>
                     </p>
                   </motion.div>
                 </div>
@@ -320,10 +320,10 @@ export default function Home() {
             {/* Weather Summary/Briefing */}
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="glass-card p-4 flex-1 overflow-y-auto scrollbar-hide"
+              className="glass-card p-3 sm:p-4 flex-1 overflow-y-auto scrollbar-hide"
             >
-              <h3 className="text-base font-semibold mb-3 flex items-center gap-2" style={{ color: "var(--text-primary)" }}>
-                <CloudRain className="w-4 h-4 text-indigo-400" />
+              <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3 flex items-center gap-2" style={{ color: "var(--text-primary)" }}>
+                <CloudRain className="w-3 h-3 sm:w-4 sm:h-4 text-indigo-400" />
                 Weather Briefing
               </h3>
               
@@ -350,15 +350,15 @@ export default function Home() {
             </div>
 
             {/* Middle Column - Hourly + Stats */}
-            <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 h-full">
+            <div className="lg:col-span-4 flex flex-col gap-3 sm:gap-4 h-full overflow-y-auto scrollbar-hide">
             {/* 24-Hour Forecast */}
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="glass-card p-6 flex-1 flex flex-col"
+              className="glass-card p-4 sm:p-5 md:p-6 flex-1 flex flex-col"
             >
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "var(--text-primary)" }}>24-Hour Forecast</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4" style={{ color: "var(--text-primary)" }}>24-Hour Forecast</h3>
               <div className="flex-1 overflow-x-auto overflow-y-hidden scrollbar-hide">
-                <div className="flex gap-4 h-full pb-2">
+                <div className="flex gap-3 sm:gap-4 h-full pb-2">
                   {weather.hourly.slice(0, 24).map((hour, i) => {
                     const hourTime = new Date(hour.dt * 1000).getHours();
                     const isNow = i === 0;
@@ -367,15 +367,15 @@ export default function Home() {
                       <motion.div
                         key={hour.dt}
                         whileHover={{ scale: 1.08, y: -8 }}
-                        className={`flex-shrink-0 p-4 rounded-2xl text-center transition-all flex flex-col justify-between ${
+                        className={`flex-shrink-0 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center transition-all flex flex-col justify-between ${
                           isNow 
                             ? 'bg-gradient-to-br from-blue-500/30 via-blue-400/20 to-purple-500/20 border-2 border-blue-400/50 shadow-lg shadow-blue-500/20' 
                             : 'bg-white/5 hover:bg-white/10 border border-white/10'
                         }`}
-                        style={{ minWidth: '90px', height: '100%' }}
+                        style={{ minWidth: '70px', height: '100%' }}
                       >
                         <div>
-                          <p className={`text-sm font-medium mb-2 ${isNow ? 'text-blue-300' : ''}`} style={{ color: isNow ? undefined : "var(--text-tertiary)" }}>
+                          <p className={`text-xs sm:text-sm font-medium mb-1 sm:mb-2 ${isNow ? 'text-blue-300' : ''}`} style={{ color: isNow ? undefined : "var(--text-tertiary)" }}>
                             {isNow ? 'Now' : `${hourTime}:00`}
                           </p>
                           <motion.img 
@@ -383,18 +383,18 @@ export default function Home() {
                             transition={{ duration: 0.6 }}
                             src={getWeatherIconUrl(hour.icon)} 
                             alt="" 
-                            className="w-16 h-16 mx-auto mb-3" 
+                            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-2 sm:mb-3" 
                           />
                         </div>
                         
                         <div>
-                          <p className="text-2xl font-bold mb-2" style={{ color: "var(--text-primary)" }}>
+                          <p className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: "var(--text-primary)" }}>
                             {Math.round(hour.temp)}°
                           </p>
                           {hour.pop > 0 && (
-                            <div className="flex items-center justify-center gap-1.5 px-2 py-1 rounded-full bg-blue-500/30 border border-blue-400/30">
-                              <Droplets className="w-3 h-3 text-blue-400" />
-                              <span className="text-xs font-semibold text-blue-300">{Math.round(hour.pop)}%</span>
+                            <div className="flex items-center justify-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-blue-500/30 border border-blue-400/30">
+                              <Droplets className="w-2 h-2 sm:w-3 sm:h-3 text-blue-400" />
+                              <span className="text-[10px] sm:text-xs font-semibold text-blue-300">{Math.round(hour.pop)}%</span>
                             </div>
                           )}
                         </div>
@@ -406,43 +406,43 @@ export default function Home() {
             </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-3 flex-shrink-0">
-              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-3 stat-card-glow stat-card-cyan">
-                <div className="flex items-center gap-2 mb-1">
-                  <Eye className="w-4 h-4 text-cyan-400" />
-                  <span className="text-[10px]" style={{ color: "var(--text-tertiary)" }}>Visibility</span>
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 flex-shrink-0">
+              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-2 sm:p-3 stat-card-glow stat-card-cyan">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <Eye className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
+                  <span className="text-[9px] sm:text-[10px]" style={{ color: "var(--text-tertiary)" }}>Visibility</span>
                 </div>
-                <p className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
+                <p className="text-base sm:text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   {(weather.current.visibility / 1000).toFixed(1)} km
                 </p>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-3 stat-card-glow stat-card-amber">
-                <div className="flex items-center gap-2 mb-1">
-                  <Gauge className="w-4 h-4 text-amber-400" />
-                  <span className="text-[10px]" style={{ color: "var(--text-tertiary)" }}>Pressure</span>
+              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-2 sm:p-3 stat-card-glow stat-card-amber">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <Gauge className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400" />
+                  <span className="text-[9px] sm:text-[10px]" style={{ color: "var(--text-tertiary)" }}>Pressure</span>
                 </div>
-                <p className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
+                <p className="text-base sm:text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   {weather.current.pressure} hPa
                 </p>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-3 stat-card-glow stat-card-violet">
-                <div className="flex items-center gap-2 mb-1">
-                  <Thermometer className="w-4 h-4 text-violet-400" />
-                  <span className="text-[10px]" style={{ color: "var(--text-tertiary)" }}>Feels Like</span>
+              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-2 sm:p-3 stat-card-glow stat-card-violet">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <Thermometer className="w-3 h-3 sm:w-4 sm:h-4 text-violet-400" />
+                  <span className="text-[9px] sm:text-[10px]" style={{ color: "var(--text-tertiary)" }}>Feels Like</span>
                 </div>
-                <p className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
+                <p className="text-base sm:text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   {Math.round(weather.current.feels_like)}°
                 </p>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-3 stat-card-glow stat-card-emerald">
-                <div className="flex items-center gap-2 mb-1">
-                  <CloudRain className="w-4 h-4 text-emerald-400" />
-                  <span className="text-[10px]" style={{ color: "var(--text-tertiary)" }}>UV Index</span>
+              <motion.div whileHover={{ scale: 1.05 }} className="glass-card p-2 sm:p-3 stat-card-glow stat-card-emerald">
+                <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                  <CloudRain className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-400" />
+                  <span className="text-[9px] sm:text-[10px]" style={{ color: "var(--text-tertiary)" }}>UV Index</span>
                 </div>
-                <p className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
+                <p className="text-base sm:text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   {weather.current.uvi}
                 </p>
               </motion.div>
@@ -450,26 +450,26 @@ export default function Home() {
           </div>
 
           {/* Right Column - 7-Day Forecast */}
-          <div className="col-span-12 lg:col-span-4 h-full flex flex-col">
+          <div className="lg:col-span-4 h-full flex flex-col overflow-y-auto scrollbar-hide">
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="glass-card p-4 flex-1 flex flex-col overflow-hidden"
+              className="glass-card p-3 sm:p-4 flex-1 flex flex-col overflow-hidden"
             >
-              <h3 className="text-lg font-semibold mb-4 flex-shrink-0" style={{ color: "var(--text-primary)" }}>7-Day Forecast</h3>
-              <div className="space-y-3 flex-1 overflow-y-auto scrollbar-hide">
+              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 flex-shrink-0" style={{ color: "var(--text-primary)" }}>7-Day Forecast</h3>
+              <div className="space-y-2 sm:space-y-3 flex-1 overflow-y-auto scrollbar-hide">
                 {weather.daily.slice(0, 7).map((day, i) => (
                   <motion.div
                     key={day.dt}
                     whileHover={{ scale: 1.03, x: 8 }}
-                    className={`p-5 rounded-2xl transition-all backdrop-blur-sm ${
+                    className={`p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl transition-all backdrop-blur-sm ${
                       i === 0 
                         ? 'bg-gradient-to-r from-blue-500/30 via-blue-400/20 to-purple-500/20 border-2 border-blue-400/50 shadow-lg shadow-blue-500/20' 
                         : 'bg-white/5 hover:bg-white/10 border border-white/10'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-4 flex-1">
-                        <p className={`text-base font-semibold w-20 ${i === 0 ? 'text-blue-300' : ''}`} style={{ color: i === 0 ? undefined : "var(--text-primary)" }}>
+                    <div className="flex items-center justify-between mb-2 sm:mb-3 gap-2">
+                      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1 min-w-0">
+                        <p className={`text-xs sm:text-sm md:text-base font-semibold w-16 sm:w-20 flex-shrink-0 ${i === 0 ? 'text-blue-300' : ''}`} style={{ color: i === 0 ? undefined : "var(--text-primary)" }}>
                           {i === 0 ? 'Today' : formatDay(day.dt)}
                         </p>
                         <motion.img 
@@ -477,24 +477,24 @@ export default function Home() {
                           transition={{ duration: 0.6 }}
                           src={getWeatherIconUrl(day.icon)} 
                           alt="" 
-                          className="w-12 h-12" 
+                          className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0" 
                         />
-                        <p className="text-sm capitalize flex-1" style={{ color: "var(--text-secondary)" }}>
+                        <p className="text-xs sm:text-sm capitalize flex-1 truncate" style={{ color: "var(--text-secondary)" }}>
                           {day.description}
                         </p>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
                         {day.pop > 0 && (
-                          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/30 border border-blue-400/30">
-                            <Droplets className="w-4 h-4 text-blue-400" />
-                            <span className="text-sm font-semibold text-blue-300">{Math.round(day.pop)}%</span>
+                          <div className="hidden sm:flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-blue-500/30 border border-blue-400/30">
+                            <Droplets className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" />
+                            <span className="text-xs sm:text-sm font-semibold text-blue-300">{Math.round(day.pop)}%</span>
                           </div>
                         )}
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <span className="text-base sm:text-lg md:text-xl font-bold" style={{ color: "var(--text-primary)" }}>
                             {Math.round(day.temp_max)}°
                           </span>
-                          <span className="text-lg font-medium" style={{ color: "var(--text-tertiary)" }}>
+                          <span className="text-sm sm:text-base md:text-lg font-medium" style={{ color: "var(--text-tertiary)" }}>
                             {Math.round(day.temp_min)}°
                           </span>
                         </div>
@@ -502,7 +502,7 @@ export default function Home() {
                     </div>
                     
                     {/* Temperature bar */}
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: `${((day.temp_max - day.temp_min) / 30) * 100}%` }}
